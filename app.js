@@ -1,31 +1,35 @@
 
-// Set a static folder
-app.use(express.static('public'));
-
-
-app.get('/', (request,response)=>{
-   response.render('index');
-})
-
 // Import express package
 const express = require('express');
 const upload = require('./upload');
 
-app.get('/', (request,response)=>{
-   response.render('index');
-})
 
-// route to handle image upload
-app.post('/upload', (request,response)=>{
-   upload(request,response, (err)=>{
-       if (err){
-           console.log(err)
-       }else{
-           console.log(request.file)
-           response.send('test');
-       }
-   })
-})
+// Initialize express
+const app = express();
+
+// Set up a view engine
+app.set('view engine', 'ejs');
+
+
+// Set a static folder
+app.use(express.static('public'));
+
+app.get('/', (req,res)=>{
+    res.render('index');
+ })
+ 
+ // route to handle image upload
+ app.post('/upload', (req,res)=>{
+    upload(req,res, (err)=>{
+        if (err){
+            console.log(err)
+        }else{
+            console.log(req.file)
+            res.send('test');
+        }
+    })
+ })
+
 
 
 // Define the port number
