@@ -16,7 +16,7 @@ const upload = multer({
    limits: {fileSize: 1000000},
    fileFilter: function(req,file, cb){
        // Allowed extensions
-       let fileTypes = /jpg|jpeg|png|gif/;
+       let fileTypes = /jpg|jpeg|png|gif|jfif/;
        // check file extension
        let extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
        // check mime type

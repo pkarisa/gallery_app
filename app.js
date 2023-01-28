@@ -1,8 +1,7 @@
-
 // Import express package
 const express = require('express');
-const upload = require('./upload');
 
+let indexRouter = require('./routes/index');
 
 // Initialize express
 const app = express();
@@ -14,22 +13,8 @@ app.set('view engine', 'ejs');
 // Set a static folder
 app.use(express.static('public'));
 
-app.get('/', (req,res)=>{
-    res.render('index');
- })
- 
- // route to handle image upload
- app.post('/upload', (req,res)=>{
-    upload(req,res, (err)=>{
-        if (err){
-            console.log(err)
-        }else{
-            console.log(req.file)
-            res.send('test');
-        }
-    })
- })
-
+// Define the index router
+app.use('/', indexRouter);
 
 
 // Define the port number
